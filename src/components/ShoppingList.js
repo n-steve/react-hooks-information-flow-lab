@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Item from "./Item";
-import Filter from "./Filter"
+import Filter from "./Filter";
+
 function ShoppingList({ items }) {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Filter");
 
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
   }
 
   const itemsToDisplay = items.filter((item) => {
-    if (selectedCategory === "All") return true;
+    if (selectedCategory === "Filter") return true;
 
     return item.category === selectedCategory;
   });
@@ -17,7 +18,7 @@ function ShoppingList({ items }) {
   return (
     <div className="ShoppingList">
       <div className="Filter">
-      <Filter onCatergoryChange={handleCategoryChange}/>
+        <Filter onCategoryChange={handleCategoryChange} />
       </div>
       <ul className="Items">
         {itemsToDisplay.map((item) => (
